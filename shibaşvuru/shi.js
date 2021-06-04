@@ -9,21 +9,21 @@ client.on('ready', async () => {
   if (botVoiceChannel) botVoiceChannel.join().catch(err => console.error("Bot ses kanalına bağlanamadı!")); 
 });
 
-const commands = new Map();
-global.commands = commands;
+const komutlar = new Map();
+global.komutlar = komutlar;
 const aliases = new Map();
 global.aliases = aliases;
 global.client = client;
-fs.readdir("./Commands", (err, files) => {
+fs.readdir("./komutlar", (err, files) => {
     if(err) return console.error(err);
     files = files.filter(file => file.endsWith(".js"));
     console.log(`${files.length} komut yüklenecek.`);
     files.forEach(file => {
-        let prop = require(`./Commands/${file}`);
+        let prop = require(`./komutlar/${file}`);
         if(!prop.configuration) return;
         console.log(`${prop.configuration.name} komutu yükleniyor!`);
         if(typeof prop.onLoad === "function") prop.onLoad(client);
-        commands.set(prop.configuration.name, prop);
+        komutlar.set(prop.configuration.name, prop);
         if(prop.configuration.aliases) prop.configuration.aliases.forEach(aliase => aliases.set(aliase, prop));
     });
 });
@@ -37,8 +37,8 @@ fs.readdir("./Commands", (err, files) => {
         let bot = message.client;
         args = args.splice(1);
         let calistirici;
-        if (commands.has(command)) {
-          calistirici = commands.get(command);
+        if (komutlar.has(command)) {
+          calistirici = komutlar.get(command);
           calistirici.execute(bot, message, args);
         } else if (aliases.has(command)) {
           calistirici = aliases.get(command);
