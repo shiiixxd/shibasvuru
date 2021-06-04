@@ -1,0 +1,16 @@
+{
+  "name": "shi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "shi.js",
+  "scripts": {
+    "test": "node shi.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.11.11"
+  }
+}
