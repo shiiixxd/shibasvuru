@@ -13,7 +13,7 @@ module.exports.execute = async (client, message, args) => {
     let kanal = [shi.başvuru];
     if (!kanal.includes(message.channel.id)) return message.reply(`Komutu sadece ${shi.başvuru} bu kanalda kullanabilirsin.`).then(x => x.delete({timeout: 10000}));
 try {
-    message.author.send(`${message.author}`, {embed: shiembed.setDescription(`Merhaba yetkili olmak için ilk önce ismini ve yaşını örenebilirmiyim ?`)}).then(async m => {
+    message.author.send(`${message.author}`, {embed: shiembed.setDescription(`Merhaba yetkili olmak için ilk önce ismini ve yaşını öğrenebilirmiyim ?`)}).then(async m => {
         message.react("✅");
         let awaitMessage = await m.channel.awaitMessages(x => x.author.id == message.author.id, { max: 1, time: 60000 });
         if (!awaitMessage.size) return message.channel.send(`${member} Zamanında cevap vermediğin için başvuruyu iptal ettim.`).then(m.delete());
